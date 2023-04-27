@@ -78,24 +78,8 @@ const Navbar = () => {
               Favourites
             </li>
             <li className="flex text-xl py-4 items-center cursor-pointer">
-              <FaWallet size={25} className="mr-4" />
-              Walet
-            </li>
-            <li className="flex text-xl py-4 items-center cursor-pointer">
               <MdHelp size={25} className="mr-4" />
               Help
-            </li>
-            <li className="flex text-xl py-4 items-center cursor-pointer">
-              <BsFillSaveFill size={25} className="mr-4" />
-              Promotions
-            </li>
-            <li className="flex text-xl py-4 items-center cursor-pointer">
-              <AiFillTag size={25} className="mr-4" />
-              Best One
-            </li>
-            <li className="flex text-xl py-4 items-center cursor-pointer">
-              <FaUserFriends size={25} className="mr-4" />
-              Invite Friends
             </li>
           </ul>
         </nav>

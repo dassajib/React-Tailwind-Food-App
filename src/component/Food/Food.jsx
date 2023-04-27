@@ -23,7 +23,7 @@ const Food = () => {
   return (
     <div className="max-w-[1640px] mx-auto p-4 py-12">
       <h1 className="text-center font-bold text-4xl text-orange-600">
-        Top Rated Food's
+        Our Food's
       </h1>
       <div className="flex flex-col lg:flex-row justify-between">
         <div className="py-4">
@@ -50,18 +50,18 @@ const Food = () => {
         <div>
           <p className="font-bold text-gray-700 px-2">Filter Price</p>
           <div className="flex flex-wrap">
-            <button onClick={() => filterPrice('$')} className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
-              $
+            <button onClick={() => filterPrice('$10')} className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
+              $10
             </button>
-            <button onClick={() => filterPrice('$$')} className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
-              $$
+            <button onClick={() => filterPrice('$50')} className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
+              $50
             </button>
-            <button onClick={() => filterPrice('$$$')} className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
-              $$$
+            <button onClick={() => filterPrice('$100')} className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
+              $100
             </button>
-            <button onClick={() => filterPrice('$$$$')} className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
+            {/* <button onClick={() => filterPrice('$$$$')} className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
               $$$$
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

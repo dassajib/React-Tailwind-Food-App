@@ -6,7 +6,7 @@ const Categories = () => {
     <div className="max-w-[1640px] px-4 py-12">
       <div>
         <h1 className="bg-orange-600 text-center text-4xl rounded-md py-2 text-white">
-          All Top Rated Menu
+          Our Menu
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-6">
           {categories.map((item, index) => (
