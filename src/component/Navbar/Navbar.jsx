@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   AiOutlineMenu,
   AiOutlineSearch,
   AiOutlineClose,
-  AiFillTag,
 } from "react-icons/ai";
 import { TbTruckDelivery } from "react-icons/tb";
-import { BsFillCartFill, BsFillSaveFill } from "react-icons/bs";
-import { FaUserFriends, FaWallet } from "react-icons/fa";
+import { BsFillCartFill } from "react-icons/bs";
 import { MdFavorite, MdHelp } from "react-icons/md";
+import CartContext from "../../CartContext";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+
+  const { items } = useContext(CartContext);
 
   return (
     <div className="max-w-[1640px] mx-auto flex justify-between items-center p-4">
@@ -41,7 +42,7 @@ const Navbar = () => {
 
       {/* cart */}
       <button className="bg-black text-white hidden md:flex items-center py-2 rounded-full">
-        <BsFillCartFill size={20} className="mr-2" /> Cart
+        <BsFillCartFill size={20} className="mr-2" /> Cart {items.length}
       </button>
 
       {/* mobile view overlay, */}

@@ -1,3 +1,4 @@
+import { CartProvider } from "./CartContext";
 import Categories from "./component/Categories/Categories";
 import Food from "./component/Food/Food";
 import Hero from "./component/Hero/Hero";
@@ -7,11 +8,13 @@ import Navbar from "./component/Navbar/Navbar";
 function App() {
   return (
     <div>
-      <Navbar/>
-      <Hero/>
-      <HeroCard/>
-      <Food/>
-      <Categories/>
+      <CartProvider>
+        <Navbar />
+        <Hero />
+        <HeroCard />
+        <Food />
+        <Categories />
+      </CartProvider>
     </div>
   );
 }
