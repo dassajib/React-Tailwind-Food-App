@@ -3,6 +3,8 @@ import {
   AiOutlineMenu,
   AiOutlineSearch,
   AiOutlineClose,
+  AiOutlineDelete,
+  AiOutlinePlus,
 } from "react-icons/ai";
 import { TbTruckDelivery } from "react-icons/tb";
 import { BsFillCartFill } from "react-icons/bs";
@@ -12,7 +14,10 @@ import CartContext from "../../CartContext";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
 
+  const [cartSection, setCartSection] = useState(false);
+
   const { items } = useContext(CartContext);
+  console.log(items)
 
   return (
     <div className="max-w-[1640px] mx-auto flex justify-between items-center p-4">
@@ -31,7 +36,7 @@ const Navbar = () => {
         </div>
       </div>
       {/* search */}
-      <div className="flex items-center bg-gray-200 rounded-full px-2 w-[200px] sm:w-[400px] lg:w-[500px]">
+      <div className="hidden md:flex items-center bg-gray-200 rounded-full px-2 w-[200px] sm:w-[400px] lg:w-[500px]">
         <AiOutlineSearch size={20} />
         <input
           className="bg-transparent w-full p-2 focus:outline-none"
@@ -41,11 +46,14 @@ const Navbar = () => {
       </div>
 
       {/* cart */}
-      <button className="bg-black text-white hidden md:flex items-center py-2 rounded-full">
+      <button
+        onClick={() => setCartSection(!cartSection)}
+        className="bg-black text-white flex items-center py-2 rounded-full"
+      >
         <BsFillCartFill size={20} className="mr-2" /> Cart {items.length}
       </button>
 
-      {/* mobile view overlay, */}
+      {/* mobile view overlay */}
       {nav ? (
         <div className="bg-black/80 fixed top-0 left-0 w-full h-screen z-10"></div>
       ) : (
@@ -56,7 +64,7 @@ const Navbar = () => {
       <div
         className={
           nav
-            ? "bg-white fixed w-[300px] top-0 left-0 h-screen z-10"
+            ? "bg-white fixed w-[300px] top-0 left-0 h-screen z-10 duration-500"
             : "bg-white fixed w-[300px] top-0 left-[-100%] h-screen z-10"
         }
       >
@@ -83,6 +91,74 @@ const Navbar = () => {
               Help
             </li>
           </ul>
+        </nav>
+      </div>
+
+      {/* mobile view overlay rightside */}
+      {/* mobile view overlay */}
+      {cartSection ? (
+        <div className="bg-black/80 fixed top-0 right-0 w-full h-screen z-10"></div>
+      ) : (
+        ""
+      )}
+
+      {/* right side bar  */}
+      <div
+        className={
+          cartSection
+            ? "bg-white fixed w-[300px] top-0 right-0 h-screen z-10 duration-500"
+            : "bg-white fixed w-[300px] top-0 right-[-100%] h-screen z-10"
+        }
+      >
+        <AiOutlineClose
+          onClick={() => setCartSection(!cartSection)}
+          size={25}
+          className="absolute top-4 right-4 cursor-pointer"
+        />
+        <h2 className="text-center text-2xl p-4">
+          Your<span className="font-bold"> Order</span>
+        </h2>
+        <nav>
+          <div>
+            <div className="flex justify-between px-4">
+              <h6>
+                {
+                  items.map(item => <li>{item.name}</li>)
+                }
+              </h6>
+              <p>
+                {
+                  items.map(item => item.price)
+                }
+              </p>
+            </div>
+            <div className="flex justify-between px-4 mt-2">
+              <AiOutlineDelete className="cursor-pointer" size={20} />
+              <h6>{items.length}</h6>
+              <AiOutlinePlus className="cursor-pointer" size={20} />
+            </div>
+            <hr className="mt-2"></hr>
+            <div className="flex justify-between px-4 mt-2">
+              <p>Sub Total</p>
+              <p>100 TK</p>
+            </div>
+            <div className="flex justify-between px-4 mt-2">
+              <p>Delivery Fee</p>
+              <p>100 TK</p>
+            </div>
+            <div className="flex justify-between px-4 mt-2">
+              <p>Platform Fee</p>
+              <p>100 TK</p>
+            </div>
+            <hr className="mt-2"></hr>
+            <div className="flex justify-between px-4 mt-2">
+              <p>Grand Total</p>
+              <p>100 TK</p>
+            </div>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+              Go To Checkout
+            </button>
+          </div>
         </nav>
       </div>
     </div>
