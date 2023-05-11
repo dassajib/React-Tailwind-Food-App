@@ -10,14 +10,15 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { BsFillCartFill } from "react-icons/bs";
 import { MdFavorite, MdHelp } from "react-icons/md";
 import CartContext from "../../CartContext";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
 
-  const [cartSection, setCartSection] = useState(false);
+  const [cartSidebar, setcartSidebar] = useState(false);
 
   const { items } = useContext(CartContext);
-  console.log(items)
+  console.log(items);
 
   return (
     <div className="max-w-[1640px] mx-auto flex justify-between items-center p-4">
@@ -47,8 +48,8 @@ const Navbar = () => {
 
       {/* cart */}
       <button
-        onClick={() => setCartSection(!cartSection)}
-        className="bg-black text-white flex items-center py-2 rounded-full"
+        onClick={() => setcartSidebar(!cartSidebar)}
+        className="bg-black text-white flex items-center border border-black rounded-full px-5 py-2"
       >
         <BsFillCartFill size={20} className="mr-2" /> Cart {items.length}
       </button>
@@ -96,7 +97,7 @@ const Navbar = () => {
 
       {/* mobile view overlay rightside */}
       {/* mobile view overlay */}
-      {cartSection ? (
+      {cartSidebar ? (
         <div className="bg-black/80 fixed top-0 right-0 w-full h-screen z-10"></div>
       ) : (
         ""
@@ -105,13 +106,13 @@ const Navbar = () => {
       {/* right side bar  */}
       <div
         className={
-          cartSection
+          cartSidebar
             ? "bg-white fixed w-[300px] top-0 right-0 h-screen z-10 duration-500"
             : "bg-white fixed w-[300px] top-0 right-[-100%] h-screen z-10"
         }
       >
         <AiOutlineClose
-          onClick={() => setCartSection(!cartSection)}
+          onClick={() => setcartSidebar(!cartSidebar)}
           size={25}
           className="absolute top-4 right-4 cursor-pointer"
         />
@@ -120,44 +121,49 @@ const Navbar = () => {
         </h2>
         <nav>
           <div>
-            <div className="flex justify-between px-4">
-              <h6>
-                {
-                  items.map(item => <li>{item.name}</li>)
-                }
-              </h6>
-              <p>
-                {
-                  items.map(item => item.price)
-                }
-              </p>
+            <div>
+              <div className="flex justify-between px-4">
+                <div>
+                  {items.map((item) => (
+                    <div className="">{item.name}</div>
+                  ))}
+                </div>
+                <div>
+                  {items.map((item) => (
+                    <div className="">${item.price}</div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex justify-between px-4 mt-2">
+                <AiOutlineDelete className="cursor-pointer" size={20} />
+                <h6>{items.length}</h6>
+                <AiOutlinePlus className="cursor-pointer" size={20} />
+              </div>
             </div>
-            <div className="flex justify-between px-4 mt-2">
-              <AiOutlineDelete className="cursor-pointer" size={20} />
-              <h6>{items.length}</h6>
-              <AiOutlinePlus className="cursor-pointer" size={20} />
-            </div>
+
             <hr className="mt-2"></hr>
             <div className="flex justify-between px-4 mt-2">
               <p>Sub Total</p>
-              <p>100 TK</p>
+              <p>$100</p>
             </div>
             <div className="flex justify-between px-4 mt-2">
               <p>Delivery Fee</p>
-              <p>100 TK</p>
+              <p>$100</p>
             </div>
             <div className="flex justify-between px-4 mt-2">
               <p>Platform Fee</p>
-              <p>100 TK</p>
+              <p>$100</p>
             </div>
             <hr className="mt-2"></hr>
             <div className="flex justify-between px-4 mt-2">
               <p>Grand Total</p>
-              <p>100 TK</p>
+              <p>$100</p>
             </div>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
-              Go To Checkout
-            </button>
+            <Link to="order-details">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded border-none mt-4">
+                Go To Checkout
+              </button>
+            </Link>
           </div>
         </nav>
       </div>

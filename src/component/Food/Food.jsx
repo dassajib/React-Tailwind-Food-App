@@ -94,24 +94,24 @@ const Food = () => {
           <p className="font-bold text-gray-700 px-2">Filter Price</p>
           <div className="flex flex-wrap">
             <button
-              onClick={() => filterPrice("$10")}
+              onClick={() => filterPrice("10")}
               className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
             >
               $10
             </button>
             <button
-              onClick={() => filterPrice("$50")}
+              onClick={() => filterPrice("50")}
               className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
             >
               $50
             </button>
             <button
-              onClick={() => filterPrice("$100")}
+              onClick={() => filterPrice("100")}
               className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
             >
               $100
             </button>
-            {/* <button onClick={() => filterPrice('$$$$')} className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
+            {/* <button onClick={() => filterPrice('$$$')} className="m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
               $$$$
             </button> */}
           </div>
@@ -137,7 +137,7 @@ const Food = () => {
                   <div className="flex justify-between">
                     <p>
                       <span className="bg-orange-700 rounded-full text-white p-1">
-                        {item.price}
+                        ${item.price}
                       </span>
                     </p>
                     <AiOutlineShoppingCart
