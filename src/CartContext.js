@@ -8,6 +8,7 @@ export function CartProvider({children}) {
 
     const handleAddToCart = (name, price) => {
         setItems((prevState) => [...prevState, {name,price}])
+        console.log(items)
     }
 
     return (

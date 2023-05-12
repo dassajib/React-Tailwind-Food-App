@@ -5,6 +5,7 @@ import {
   AiOutlineClose,
   AiOutlineDelete,
   AiOutlinePlus,
+  AiOutlineHome,
 } from "react-icons/ai";
 import { TbTruckDelivery } from "react-icons/tb";
 import { BsFillCartFill } from "react-icons/bs";
@@ -18,7 +19,7 @@ const Navbar = () => {
   const [cartSidebar, setcartSidebar] = useState(false);
 
   const { items } = useContext(CartContext);
-  console.log(items);
+  // console.log(items);
 
   return (
     <div className="max-w-[1640px] mx-auto flex justify-between items-center p-4">
@@ -79,6 +80,13 @@ const Navbar = () => {
         </h2>
         <nav>
           <ul className="flex flex-col p-4 text-gray-800">
+            <Link to="/">
+              <li className="flex text-xl py-4 items-center cursor-pointer">
+                <AiOutlineHome size={25} className="mr-4" />
+                Home
+              </li>
+            </Link>
+
             <li className="flex text-xl py-4 items-center cursor-pointer">
               <TbTruckDelivery size={25} className="mr-4" />
               Order
@@ -121,23 +129,23 @@ const Navbar = () => {
         </h2>
         <nav>
           <div>
-            <div>
-              <div className="flex justify-between px-4">
-                <div>
-                  {items.map((item) => (
-                    <div className="">{item.name}</div>
-                  ))}
-                </div>
-                <div>
-                  {items.map((item) => (
-                    <div className="">${item.price}</div>
-                  ))}
-                </div>
+            <div className="flex justify-between px-4">
+              <div>
+                {items.map((item) => (
+                  <div className="">
+                    {item.name}
+                    <div className="flex justify-between px-4 mt-2">
+                      <AiOutlineDelete className="cursor-pointer" size={20} />
+                      <h6>{items.length}</h6>
+                      <AiOutlinePlus className="cursor-pointer" size={20} />
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="flex justify-between px-4 mt-2">
-                <AiOutlineDelete className="cursor-pointer" size={20} />
-                <h6>{items.length}</h6>
-                <AiOutlinePlus className="cursor-pointer" size={20} />
+              <div>
+                {items.map((item) => (
+                  <div className="">${item.price}</div>
+                ))}
               </div>
             </div>
 
@@ -148,19 +156,19 @@ const Navbar = () => {
             </div>
             <div className="flex justify-between px-4 mt-2">
               <p>Delivery Fee</p>
-              <p>$100</p>
+              <p>$10</p>
             </div>
             <div className="flex justify-between px-4 mt-2">
               <p>Platform Fee</p>
-              <p>$100</p>
+              <p>$2</p>
             </div>
             <hr className="mt-2"></hr>
             <div className="flex justify-between px-4 mt-2">
               <p>Grand Total</p>
               <p>$100</p>
             </div>
-            <Link to="order-details">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded border-none mt-4">
+            <Link to="order-details" className="flex flex-col items-center">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-none rounded mt-4 px-4">
                 Go To Checkout
               </button>
             </Link>
