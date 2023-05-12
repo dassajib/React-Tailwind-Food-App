@@ -141,7 +141,7 @@ const Food = () => {
                       </span>
                     </p>
                     <AiOutlineShoppingCart
-                      onClick={() => handleAddToCart(item.name, item.price)}
+                      onClick={() => handleAddToCart(item.name, item.price, 1)}
                       size={24}
                       className="cursor-pointer"
                     />

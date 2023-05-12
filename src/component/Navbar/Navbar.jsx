@@ -3,7 +3,7 @@ import {
   AiOutlineMenu,
   AiOutlineSearch,
   AiOutlineClose,
-  AiOutlineDelete,
+  // AiOutlineDelete,
   AiOutlinePlus,
   AiOutlineHome,
 } from "react-icons/ai";
@@ -18,8 +18,16 @@ const Navbar = () => {
 
   const [cartSidebar, setcartSidebar] = useState(false);
 
-  const { items } = useContext(CartContext);
+  const { items, handleAddToCart } = useContext(CartContext);
   // console.log(items);
+
+  let total = 0;
+  items.forEach(element => {
+    total += Number(element.price) * element.quantity;
+  });
+
+  const deliveryFee = 10;
+  const platformFee = 4;
 
   return (
     <div className="max-w-[1640px] mx-auto flex justify-between items-center p-4">
@@ -87,10 +95,13 @@ const Navbar = () => {
               </li>
             </Link>
 
-            <li className="flex text-xl py-4 items-center cursor-pointer">
-              <TbTruckDelivery size={25} className="mr-4" />
-              Order
-            </li>
+            <Link to="/order-details">
+              <li className="flex text-xl py-4 items-center cursor-pointer">
+                <TbTruckDelivery size={25} className="mr-4" />
+                Order
+              </li>
+            </Link>
+
             <li className="flex text-xl py-4 items-center cursor-pointer">
               <MdFavorite size={25} className="mr-4" />
               Favourites
@@ -135,16 +146,21 @@ const Navbar = () => {
                   <div className="">
                     {item.name}
                     <div className="flex justify-between px-4 mt-2">
-                      <AiOutlineDelete className="cursor-pointer" size={20} />
-                      <h6>{items.length}</h6>
-                      <AiOutlinePlus className="cursor-pointer" size={20} />
+                      <h6>{item.quantity}</h6>
+                      <AiOutlinePlus
+                        onClick={() =>
+                          handleAddToCart(item.name, item.price, 1)
+                        }
+                        className="cursor-pointer"
+                        size={20}
+                      />
                     </div>
                   </div>
                 ))}
               </div>
               <div>
                 {items.map((item) => (
-                  <div className="">${item.price}</div>
+                  <div className="mt-8">${Number(item.price) * item.quantity}</div>
                 ))}
               </div>
             </div>
@@ -152,20 +168,20 @@ const Navbar = () => {
             <hr className="mt-2"></hr>
             <div className="flex justify-between px-4 mt-2">
               <p>Sub Total</p>
-              <p>$100</p>
+              <p>${total}</p>
             </div>
             <div className="flex justify-between px-4 mt-2">
               <p>Delivery Fee</p>
-              <p>$10</p>
+              <p>${deliveryFee}</p>
             </div>
             <div className="flex justify-between px-4 mt-2">
               <p>Platform Fee</p>
-              <p>$2</p>
+              <p>${platformFee}</p>
             </div>
             <hr className="mt-2"></hr>
             <div className="flex justify-between px-4 mt-2">
               <p>Grand Total</p>
-              <p>$100</p>
+              <p>${total+deliveryFee+platformFee}</p>
             </div>
             <Link to="order-details" className="flex flex-col items-center">
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-none rounded mt-4 px-4">
